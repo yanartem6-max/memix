@@ -1,6 +1,5 @@
 // ===== ORACUL — главный модуль =====
 import { initCatalog, renderCoinModal, initChart } from './catalog.js?v=15';
-import { initWalletUI } from './wallet.js?v=16';
 import { initSwap } from './swap.js?v=16';
 import { initProfile } from './profile.js?v=15';
 import { initSettings, renderSettings, applyTranslations, t, onSettingsChange } from './settings.js?v=16';
@@ -15,33 +14,6 @@ if (tg) {
 
 // ─── Настройки ────────────────────────────────────────────────────────────────
 initSettings();
-
-// ─── Загрузочный экран ────────────────────────────────────────────────────────
-const loadingEl = document.getElementById('loading');
-const mainEl    = document.getElementById('main');
-const startedAt = Date.now();
-
-function revealApp() {
-  const wait = Math.max(0, 800 - (Date.now() - startedAt)); // Уменьшили с 1400 до 800ms
-  setTimeout(() => {
-    loadingEl.classList.add('is-leaving');
-    setTimeout(() => {
-      loadingEl.style.display = 'none';
-      mainEl.classList.add('is-visible');
-    }, 500);
-  }, wait);
-}
-
-// Триггеры для показа app
-window.addEventListener('load', revealApp);
-if (document.readyState === 'complete') revealApp();
-
-// Fallback: если ничего не произошло за 3 сек - форсируем показ
-setTimeout(() => {
-  if (loadingEl && loadingEl.style.display !== 'none') {
-    revealApp();
-  }
-}, 3000);
 
 // ─── Навигация ────────────────────────────────────────────────────────────────
 const navBtns = document.querySelectorAll('.nav-btn');
