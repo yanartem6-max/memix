@@ -12,3 +12,13 @@ export function getWallet() {
 export function getTonBalance() {
   return 0;
 }
+
+export async function sendTonTransaction(transaction) {
+  console.log('[wallet.js] sendTonTransaction deprecated');
+  throw new Error('Wallet not connected');
+}
+
+export function TonTransaction() {
+  console.log('[wallet.js] TonTransaction deprecated');
+  return null;
+}
